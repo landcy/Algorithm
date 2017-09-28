@@ -34,5 +34,4 @@ public class JudgeRouteCircle657 {
 			System.out.println(judgeCircle(moves));
 		}
 	}
-
 }
