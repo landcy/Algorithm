@@ -23,11 +23,11 @@ public class ValidParentheses20 {
 				stack.pop();
 			}
 		}
-		return true;
+		return stack.isEmpty() ? true : false;
 	}
 
 	public static void main(String[] args) {
-		String[] tests = new String[] { "{(})", "d","{d}","", null, "(){}", "{()}", "[]" };
+		String[] tests = new String[] { "{(})", "d", "{d}", "", null, "(){}", "{()}", "[]", "((" };
 		for (String s : tests) {
 			System.out.println(isValid(s));
 		}
