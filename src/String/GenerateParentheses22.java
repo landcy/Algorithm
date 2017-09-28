@@ -13,10 +13,10 @@ public class GenerateParentheses22 {
 	}
 
 	private static HashSet<String> generateOneByOne(int n) {
-		if (n <= 0) {
-			return null;
-		}
 		HashSet<String> result = new HashSet<String>();
+		if (n <= 0) {
+			return result;
+		}
 		if (n == 1) {
 			result.add("()");
 			return result;
@@ -33,7 +33,7 @@ public class GenerateParentheses22 {
 	}
 
 	public static void main(String[] args) {
-		List<String> result = generateParenthesis(1);
+		List<String> result = generateParenthesis(0);
 		for (String str : result) {
 			System.out.println(str);
 		}
