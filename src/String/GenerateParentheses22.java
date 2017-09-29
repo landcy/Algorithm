@@ -1,39 +1,35 @@
 package String;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
 
 public class GenerateParentheses22 {
 	public static List<String> generateParenthesis(int n) {
-		HashSet<String> set = generateOneByOne(n);
-		List<String> result = new ArrayList<String>(set);
-		return result;
-	}
+		List<List<String>> lists = new ArrayList<>();
+		lists.add(Collections.singletonList(""));
 
-	private static HashSet<String> generateOneByOne(int n) {
-		HashSet<String> result = new HashSet<String>();
-		if (n <= 0) {
-			return result;
+		for (int i = 1; i <= n; ++i) {
+			final List<String> list = new ArrayList<>();
+			
+			for (int j = 0; j < i; ++j) {
+				for (final String first : lists.get(j)) {
+					for (final String second : lists.get(i - 1 - j)) {
+						list.add("(" + first + ")" + second);
+					}
+				}
+			}
+
+			lists.add(list);
 		}
-		if (n == 1) {
-			result.add("()");
-			return result;
-		}
-		HashSet<String> set = generateOneByOne(n - 1);
-		Iterator<String> iterator = set.iterator();
-		while (iterator.hasNext()) {
-			String str = iterator.next();
-			result.add("()" + str);
-			result.add(str + "()");
-			result.add("(" + str + ")");
-		}
-		return result;
+
+		return lists.get(lists.size() - 1);
 	}
+	
 
 	public static void main(String[] args) {
-		List<String> result = generateParenthesis(0);
+		List<String> result = generateParenthesis(4);
+		System.out.println("size : " + result.size());
 		for (String str : result) {
 			System.out.println(str);
 		}
